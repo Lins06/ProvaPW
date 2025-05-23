@@ -1,0 +1,271 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #367780;
+    color: #000000;
+}
+
+@font-face {
+font-family: 'Adega Serif';
+src: url('fonts/AdegaSerif-Regular.otf') format('opentype');
+font-weight: normal;
+font-style: normal;
+}
+
+main {
+    padding-top: 100px;
+  }
+  
+  /* Container dos cards */
+  .user-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  /* Card de usuário */
+  .user-card {
+    width: 300px;
+    background-color: #1e1c2e;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    color: #fafafa;
+  }
+  
+  .user-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .user-info {
+    text-align: center;
+  }
+  
+  .remove-btn {
+    margin-top: 10px;
+    display: block;
+    background-color: #ff5555;
+    border: none;
+    color: #ffffff;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+a {
+  text-decoration: none;
+  color: aquamarine;
+}
+
+#login {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.email input{
+  border-radius: 15px;
+  border: none;
+  width: 250px;
+  height: 40px;
+  padding-left: 15px;
+  background-color: #1e1c2e;
+  color: #b6b6b6;
+  margin-top: 15px; 
+}
+
+.senha input{
+  border-radius: 15px;
+  border: none;
+  width: 250px;
+  height: 40px;
+  padding-left: 15px;
+  background-color: #1e1c2e;
+  color: #b6b6b6;
+  margin-top: 15px;
+}
+
+.nome input{
+border-radius: 15px;
+border: none;
+width: 250px;
+height: 40px;
+padding-left: 15px;
+background-color: #1e1c2e;
+color: #b6b6b6;
+}
+
+.cadastrar input{
+margin-top: 20px;
+  cursor: pointer;
+  width: 120px;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+}
+
+input::placeholder{
+  color: #b6b6b6;
+}
+
+h1{
+  color: #fafafa;
+}
+
+.caixa{
+  margin-top: 100px;
+}
+
+.caixa2{
+    margin-top: 200px;
+  }
+
+
+.logo {
+color: white;
+font-size: 1.5rem;
+text-decoration: none;
+margin: 0;
+padding-left: 0;
+flex: 1;
+}
+
+.textInicial {
+text-align: center;
+margin: 0;
+padding: 0rem 0;
+}
+  
+header {
+    background: linear-gradient(45deg, #0f0c25, #1e1c2e);
+    padding: 1rem 2rem;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  .logo {
+    color: #fafafa;
+    font-size: 1.8rem;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 1rem;
+    transition: color 0.3s ease;
+  }
+  .logo:hover {
+    color: aquamarine;
+  }
+  nav {
+    display: flex;
+    gap: 2rem;
+    margin-right: 1rem;
+  }
+  nav a {
+    color: #fafafa;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: aquamarine;
+  }
+
+  /* Espaçamento para o conteúdo principal */
+  .container {
+    margin-top: 100px; /* Espaço para o header fixo */
+    padding: 20px;
+  }
+  
+  /* Seções de conteúdo */
+  .section {
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fafafa;
+  }
+  .section h2 {
+    margin-top: 0;
+    font-size: 22px;
+  }
+  .section p {
+    font-size: 16px;
+  }
+  .section a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #0f0c25;
+    color: #fafafa;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  .section a:hover {
+    background-color: aquamarine;
+    color: #0f0c25;
+  }
+  
+  main {
+    padding-top: 100px;
+  }
+  
+  /* Container dos cards */
+  .user-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  /* Card de usuário */
+  .user-card {
+    width: 300px;
+    background-color: #1e1c2e;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    color: #fafafa;
+  }
+  
+  .user-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .user-info {
+    text-align: center;
+  }
+  
+  .remove-btn {
+    margin-top: 10px;
+    display: block;
+    background-color: #ff5555;
+    border: none;
+    color: #ffffff;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+ 

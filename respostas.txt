@@ -1,0 +1,26 @@
+1. Como foi feita a integração com a API do ViaCEP?
+
+R: A integração foi feita utilizando a função `fetch()` no evento `blur` do campo de CEP. Quando o usuário digita um CEP válido, é feita uma requisição para `https://viacep.com.br/ws/${cep}/json/`, e os dados retornados (endereço, bairro, cidade e estado) são preenchidos automaticamente nos campos correspondentes.
+
+2. Como a imagem aleatória foi gerada?
+As imagens aleatórias são geradas na tela de listagem dos usuários com o uso do serviço `https://picsum.photos/300/200?random=${index}`. O número do índice do usuário é usado para garantir que cada imagem seja diferente. Também foi implementado um fallback (`onerror`) para exibir uma imagem padrão caso alguma imagem falhe ao carregar.
+
+3. Como você utilizou o LocalStorage?
+O `localStorage` é utilizado para armazenar os dados dos usuários cadastrados. Ao cadastrar um novo usuário, os dados são transformados em JSON e salvos com a chave `"usuarios"`. No carregamento da tela de listagem, os dados são lidos e utilizados para gerar os cards com as informações.
+
+4. Como você organizou os cards na tela?
+Os cards são renderizados dinamicamente em JavaScript, dentro de um container com a classe `user-card-container`. Cada card contém a imagem do voluntário, informações do usuário e um botão de remoção. A estilização é feita com CSS flexível (`flex-wrap`) e responsivo.
+
+5. Como foi implementado o sistema de login e controle de acesso?
+O login foi implementado verificando o e-mail e a senha digitados com um par fixo definido no script da tela de login (`usuario@mail.com` e `senha123`). Se os dados forem válidos, o usuário é redirecionado para a tela inicial.
+
+6. Como foi feito o controle de e-mail duplicado?
+Antes de adicionar um novo usuário ao `localStorage`, o código verifica se já existe um usuário com o mesmo e-mail usando `find()` no array de usuários. Se encontrar, o cadastro é bloqueado com uma mensagem de alerta: "Email já cadastrado!".
+
+7. Como foi implementado o redirecionamento após 5 minutos de inatividade?
+Sempre que o usuário move o mouse, pressiona uma tecla, clica ou rola a página, o temporizador é reiniciado. Se nenhuma dessas ações for detectada em 5 minutos, o usuário é alertado e redirecionado para /login.html
+
+8. O que você faria diferente se fosse um projeto real?
+- Faria o siste de Cadastro ser funcional ao inves de ter um login fixo
+- Usario um banco de dados real, ao inves do local storage
+- Melhoraria a acessibilidade e responsividade do layout.

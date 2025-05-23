@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="login">
+    <div class="caixa2">
+      <h1>LOGIN</h1>
+      <div class="email">
+        <input type="email" placeholder="E-Mail" id="email">
+      </div>
+      <div class="senha">
+        <input type="password" placeholder="Senha" id="senha">
+      </div>
+      <div class="cadastrar">
+        <input type="submit" value="Entrar" id="login-submit">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('login-submit').addEventListener('click', function(e) {
+      e.preventDefault();
+  
+      const email = document.getElementById('email').value.trim();
+      const senha = document.getElementById('senha').value.trim();
+  
+      // Validação do e-mail: deve ter 7 caracteres antes do "@" e 5 após
+      const emailPartes = email.split('@');
+      if (emailPartes.length !== 2 || emailPartes[0].length < 7 || emailPartes[1].length < 5) {
+        alert('O E-mail deve conter pelo menos 7 caracteres antes do "@" e 5 depois.');
+        return;
+      }
+  
+      // Validação da senha: mínimo de 7 caracteres
+      if (senha.length < 7) {
+        alert('A Senha deve ter pelo menos 7 caracteres.');
+        return;
+      }
+  
+      // Credenciais fixas para login (sem uso de localStorage)
+      const validEmail = "usuario@mail.com";
+      const validSenha = "senha123";
+  
+      if (email === validEmail && senha === validSenha) {
+        alert(`Bem-vindo, ${email}!`);
+        window.location.href = 'telainicio.html';
+      } else {
+        alert('Email ou senha incorreto.');
+      }
+    });
+  </script>
+  
+</body>
+</html>

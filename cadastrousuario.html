@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navegação -->
+  <header>
+    <a href="telainicio.html" class="logo">Meu Site</a>
+    <nav>
+      <a href="cadastrousuario.html">Cadastro de Usuário</a>
+      <a href="listavoluntarios.html">Lista de Voluntários</a>
+    </nav>
+  </header>
+  
+  <!-- Cadastro -->
+  <div id="login">
+    <div class="caixa">
+      <h1>CADASTRO</h1>
+      <div class="nome">
+        <input type="text" id="nome" placeholder="Nome">
+      </div>
+      <div class="email">
+        <input type="email" id="email" placeholder="E-Mail">
+      </div>
+      <div class="senha">
+        <input type="text" id="cep" placeholder="CEP">
+      </div>
+      <div class="senha">
+        <input type="text" id="endereco" placeholder="Endereço" readonly>
+      </div>
+      <div class="senha">
+        <input type="text" id="bairro" placeholder="Bairro" readonly>
+      </div>
+      <div class="senha">
+        <input type="text" id="cidade" placeholder="Cidade" readonly>
+      </div>
+      <div class="senha">
+        <input type="text" id="estado" placeholder="Estado" readonly>
+      </div>
+      <div class="cadastrar">
+        <input type="submit" id="submit" value="Cadastrar">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ViaCEP - busca automática de endereço
+    document.getElementById('cep').addEventListener('blur', function() {
+      const cep = document.getElementById('cep').value.trim();
+
+      if (cep.length !== 8 || isNaN(cep)) {
+        alert('CEP inválido! Certifique-se de digitar apenas números.');
+        return;
+      }
+
+      fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(response => {
+          if (!response.ok) throw new Error('Erro ao conectar com a API.');
+          return response.json();
+        })
+        .then(data => {
+          if (data.erro) {
+            alert('CEP não encontrado! Tente outro.');
+          } else {
+            document.getElementById('endereco').value = data.logradouro || '';
+            document.getElementById('bairro').value = data.bairro || '';
+            document.getElementById('cidade').value = data.localidade || '';
+            document.getElementById('estado').value = data.uf || '';
+          }
+        })
+        .catch(error => {
+          console.error('Erro:', error);
+          alert('Falha ao buscar CEP. Tente novamente mais tarde.');
+        });
+    });
+
+    // Validação e salvamento
+    document.getElementById('submit').addEventListener('click', function(e) {
+      e.preventDefault();
+
+      const nome = document.getElementById('nome').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const cep = document.getElementById('cep').value.trim();
+      const endereco = document.getElementById('endereco').value.trim();
+      const bairro = document.getElementById('bairro').value.trim();
+      const cidade = document.getElementById('cidade').value.trim();
+      const estado = document.getElementById('estado').value.trim();
+
+      if (nome.length < 3) {
+        alert('O Nome deve ter pelo menos 3 caracteres.');
+        return;
+      }
+
+      const emailPartes = email.split('@');
+      if (emailPartes.length !== 2 || emailPartes[0].length < 7 || emailPartes[1].length < 5) {
+        alert('O E-mail deve conter pelo menos 7 caracteres antes do "@" e 5 depois.');
+        return;
+      }
+
+      if (!cep || !endereco || !bairro || !cidade || !estado) {
+        alert('Todos os campos devem ser preenchidos corretamente.');
+        return;
+      }
+
+      const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+      if (usuarios.find(user => user.email === email)) {
+        alert('Email já cadastrado!');
+        return;
+      }
+
+      usuarios.push({ nome, email, cep, endereco, bairro, cidade, estado });
+      localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+      alert('Cadastro realizado com sucesso!');
+    });
+
+    // Inatividade - redirecionamento após 5 minutos
+    let inactivityTimeout;
+    function startInactivityTimer() {
+      clearTimeout(inactivityTimeout);
+      inactivityTimeout = setTimeout(() => {
+        alert('Você foi redirecionado para a tela de login por inatividade.');
+        window.location.href = 'login.html';
+      }, 5 * 60 * 1000);
+    }
+
+    ['mousemove', 'keydown', 'click', 'scroll'].forEach(event => {
+      document.addEventListener(event, startInactivityTimer);
+    });
+
+    startInactivityTimer();
+  </script>
+</body>
+</html>

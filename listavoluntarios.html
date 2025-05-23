@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Início</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* (Seus estilos existentes permanecem inalterados) */
+  </style>
+</head>
+<body>
+  <!-- Header com navegação -->
+  <header class="header">
+    <a href="telainicio.html" class="logo">Meu Site</a>
+    <nav>
+      <a href="cadastrousuario.html">Cadastro de Usuário</a>
+      <a href="listavoluntarios.html">Lista de Voluntários</a>
+    </nav>
+  </header>
+
+  <!-- Conteúdo principal -->
+  <main>
+    <div id="userCardContainer" class="user-card-container"></div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      function renderUserCards() {
+        const container = document.getElementById('userCardContainer');
+        container.innerHTML = '';
+        const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+        usuarios.forEach((usuario, index) => {
+          const card = document.createElement('div');
+          card.classList.add('user-card');
+
+          const imgURL = `https://thispersondoesnotexist.com/?${Date.now()}${index}`;
+          const fallbackURL = 'https://via.placeholder.com/300x200?text=Voluntario';
+
+          card.innerHTML = `
+            <img src="${imgURL}" alt="Imagem voluntário" onerror="this.onerror=null;this.src='${fallbackURL}'">
+            <div class="user-info">
+              <h2>${usuario.nome}</h2>
+              <p>Email: ${usuario.email}</p>
+              <p>Endereço: ${usuario.endereco}, ${usuario.bairro}, ${usuario.cidade} - ${usuario.estado}</p>
+            </div>
+            <button class="remove-btn">Remover</button>
+          `;
+
+          card.querySelector('.remove-btn').addEventListener('click', function () {
+            usuarios.splice(index, 1);
+            localStorage.setItem('usuarios', JSON.stringify(usuarios));
+            renderUserCards();
+          });
+
+          container.appendChild(card);
+        });
+      }
+
+      renderUserCards();
+    });
+
+    let inactivityTimeout;
+
+function startInactivityTimer() {
+  clearTimeout(inactivityTimeout); // Limpa o timeout anterior
+  inactivityTimeout = setTimeout(() => {
+    alert('Você foi redirecionado para a tela de login por inatividade.');
+    window.location.href = 'login.html'; // Redireciona para login
+  }, 5 * 60 * 1000); // 5 minutos
+}
+
+// Eventos que reiniciam o tempo de inatividade
+['mousemove', 'keydown', 'click', 'scroll'].forEach(event => {
+  document.addEventListener(event, startInactivityTimer);
+});
+
+// Inicia o contador quando a página carrega
+startInactivityTimer();
+  </script>
+</body>
+</html>
