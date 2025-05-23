@@ -2,6 +2,16 @@
 
 Este projeto é uma aplicação web simples desenvolvida em HTML, CSS e JavaScript que permite o cadastro de voluntários, preenchimento automático de endereço via CEP, listagem dos usuários cadastrados, e redirecionamento automático após inatividade.
 
+## 🔐 Acesso Inicial
+
+**O uso do sistema deve começar pela página de login (`login.html`)**.  
+A navegação correta garante o funcionamento do controle de sessão e redirecionamento por inatividade.
+
+- Email: usuario@mail.com
+- Senha: senha123
+
+---
+
 ## 🔧 Funcionalidades
 
 - Cadastro de usuários com validação de campos.
@@ -16,33 +26,36 @@ Este projeto é uma aplicação web simples desenvolvida em HTML, CSS e JavaScri
 1. **Clone ou copie os arquivos para sua máquina**  
    Certifique-se de ter todos os arquivos HTML, CSS e JS necessários.
 
-2. **Abra o arquivo `cadastrousuario.html` em um navegador**  
-   Use um navegador moderno (como Chrome ou Firefox) e abra diretamente o arquivo no seu computador. Ex:  
-   `file:///C:/caminho/para/seu/projeto/cadastrousuario.html`
+2. **Inicie o sistema pela página de login**  
+   Abra `login.html` em um navegador moderno (Chrome ou Firefox).  
+   Exemplo:  
+   `file:///C:/caminho/para/seu/projeto/login.html`
 
-3. **Preencha os dados no formulário de cadastro**
+3. **Após o login, vá para a tela de cadastro**  
+   Acesse `cadastrousuario.html` para cadastrar novos voluntários.
+
+4. **Preencha os dados no formulário de cadastro**
    - Nome (mínimo 3 caracteres)
    - E-mail (mínimo 7 caracteres antes do `@` e 5 depois)
    - CEP (somente números, 8 dígitos)
 
    O endereço, bairro, cidade e estado serão preenchidos automaticamente usando a [API do ViaCEP](https://viacep.com.br).
 
-4. **Ver a lista de voluntários**  
+5. **Ver a lista de voluntários**  
    Após o cadastro, acesse `listavoluntarios.html` para visualizar os voluntários registrados. As imagens são geradas automaticamente.
 
-5. **Inatividade**  
+6. **Inatividade**  
    Após 5 minutos sem interações (cliques, teclas, rolagem, etc), o usuário será automaticamente redirecionado para `login.html`.
 
 ## 📁 Estrutura básica dos arquivos
 
 meu-projeto/
 │
-├── cadastrousuario.html # Página de cadastro de voluntários
-├── listavoluntarios.html # Página de listagem dos voluntários
-├── login.html # Página de login (para onde o usuário é redirecionado)
-├── style.css # Estilos da interface
-└── README.md # Este arquivo com instruções
-
+├── login.html               # Página de login (início obrigatório)
+├── cadastrousuario.html     # Página de cadastro de voluntários
+├── listavoluntarios.html    # Página de listagem dos voluntários
+├── style.css                # Estilos da interface
+└── README.md                # Este arquivo com instruções
 
 ## 🔒 Observação
 
